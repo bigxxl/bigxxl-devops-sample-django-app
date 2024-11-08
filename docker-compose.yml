@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: worker
+      POSTGRES_PASSWORD: worker
+      POSTGRES_DB: app
+    volumes:
+      - /opt/parrot-db:/var/lib/postgresql/data # Map db directory to host storage
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "app", "-U", "worker"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    depends_on:
+      db:
+        condition: service_healthy
+    build: .
+    ports:
+      - "8000:80"  # Change, if needed 
+    volumes:
+      - /opt/parrot-media:/home/app/media # Map media directory to host storage
+    environment:
+      - DJANGO_DB_HOST=172.17.0.1
+      - DJANGO_DB_NAME=app
+      - DJANGO_DB_USER=worker
+      - DJANGO_DB_PASS=worker
+      - DJANGO_DB_PORT=5432
+      - DJANGO_DEBUG="False"
+
