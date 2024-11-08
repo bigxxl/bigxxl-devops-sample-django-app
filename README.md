@@ -66,9 +66,11 @@ git clone https://github.com/bigxxl/bigxxl-devops-sample-django-app
 Create directories for database and media locations on host server.
 By default directories are:
 
+<b>
 /opt/parrot-db
 
 /opt/parrot-media
+</b>
 
 Change to directory of your application and edit enviroment variables for DJANGO, PostgreSQL, volume mappings for DB, MEDIA directories and listen port number for application in <b>docker-compose.yml</b> if needed.
 
