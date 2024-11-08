@@ -67,6 +67,12 @@ Create directories for database and media locations on host server.
 
 Change to directory of your application and edit enviroment variables for DJANGO, PostgreSQL, volume mappings for DB, MEDIA directories and listen port number for application in <b>docker-compose.yml</b> if needed.
 
+Copy media files from orginal package to host media directory:
+
+```shell
+cp -R ./media/* /opt/parrot-media/
+```
+
 You can also tune up configuration file <b>uwsgi.ini</b> for uWSGI web server.
 
 Run this commands:
