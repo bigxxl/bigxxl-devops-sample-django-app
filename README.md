@@ -55,7 +55,7 @@ ____
 <h2>How to prepare and install docker image for this application.</h2>
 
 
-Install docker as described at https://docs.docker.com/engine/install/ubuntu/
+Install docker and docker-compose as specified in the official documentation for your OS.
 
 Clone this project to local storage:
 
